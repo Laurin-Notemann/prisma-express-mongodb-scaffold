@@ -1,18 +1,23 @@
-import mongoose from "mongoose";
-import { MONGODB_URL } from "../secrets";
+import { PrismaClient } from "@prisma/client";
 
+const prisma = new PrismaClient({
+  log: ['query', 'info', 'warn', 'error'],
+})
 
-export const connectToDatabase = async () => {
+export const connectToDB = async () => {
+  await prisma.$connect()
+  console.log("Successfully connected to Database")
+}
+
+export const disconnectDB = async () => {
   try {
+    await prisma.$disconnect()
 
-    mongoose.set("strictQuery", true)
-    await mongoose.connect(MONGODB_URL!)
-    
-
-    const msg = "Successfully connected to database"
+    const msg = "Succesfully disconnected from Database"
 
     return [null, msg] as const
   } catch (error) {
     return [error, null] as const
   }
 }
+

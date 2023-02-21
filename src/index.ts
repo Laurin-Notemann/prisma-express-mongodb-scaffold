@@ -1,18 +1,20 @@
 import { app } from "./server/app";
 import { PORT } from "./secrets";
-import { connectToDatabase } from "./connection/connection";
+import { connectToDB, disconnectDB } from "./connection/connection";
 
-const main = () => {
+const main = async () => {
   app.listen(PORT, async () => {
-    const [error, msg] = await connectToDatabase()
-    if (error != null)
-      console.log("Could not connect to Database", error)
-    
     console.log("Server is listening on port: ", PORT);
+    await connectToDB()
+
+    const [error, msg] = await disconnectDB()
+
+    if (error != null)
+      return error
 
     console.log(msg)
-
   });
 };
 
-main();
+
+console.log(main())
