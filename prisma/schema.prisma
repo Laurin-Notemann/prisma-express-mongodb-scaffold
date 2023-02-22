@@ -29,7 +29,7 @@ model PollOption {
   organisationId String
   createrId      String
   votes          Vote[]
-  visible Boolean
+  visible        Boolean
 
   PollCollection   PollCollection @relation(fields: [pollCollectionId], references: [id])
   pollCollectionId String         @db.ObjectId
@@ -40,6 +40,10 @@ model PollCollection {
   createdAt   DateTime     @default(now())
   pollOptions PollOption[]
   closed      Boolean
-  visible Boolean
+  visible     Boolean
 }
 
+model Organisation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  
+}

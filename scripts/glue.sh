@@ -1,8 +1,10 @@
 DELAY=2
 
+docker build -t votingbackend .
+
 docker-compose --file docker-compose.yml down
 
-docker-compose --file docker-compose.yml up -d
+docker-compose --file docker-compose.yml up -d --build
 
 echo "****** Waiting for ${DELAY} seconds for containers to go up ******"
 sleep $DELAY
