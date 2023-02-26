@@ -1,5 +1,9 @@
 run 
 
 ```
-sh ./srcipts/glue.sh
+npm i
+```
+
+```
+sh ./scripts/glue.sh
 ```

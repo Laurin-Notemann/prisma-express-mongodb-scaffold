@@ -2,7 +2,7 @@ DELAY=10
 
 mongosh <<EOF
 var config = {
-    "_id": "voting_mongo_set",
+    "_id": "mongoReplSet",
     "version": 1,
     "members": [
         {

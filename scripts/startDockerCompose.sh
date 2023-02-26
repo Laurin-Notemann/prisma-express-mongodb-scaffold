@@ -1,6 +1,6 @@
 DELAY=2
 
-docker build -t votingbackend .
+docker build -t pollbackend .
 
 docker-compose --file docker-compose.yml down
 
