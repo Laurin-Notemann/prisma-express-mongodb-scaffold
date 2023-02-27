@@ -8,12 +8,8 @@ RUN npm install
 
 COPY . .
 
-# RUN npm run build
-
 RUN npx prisma generate
 
 ENV PORT = 8000
 
 EXPOSE 8000
-
-CMD ["npm", "run", "dev"]

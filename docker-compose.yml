@@ -2,6 +2,8 @@ services:
   mongo1:
     container_name: mongo1
     image: mongo:6
+    ports:
+      - 27019:27017
     volumes:
       - ./scripts/rs-init.sh:/scripts/rs-init.sh
       - ./scripts/init.js:/scripts/init.js
@@ -36,11 +38,14 @@ services:
         "--replSet",
         "mongoReplSet"
       ]
-  pollBackend:
+  pollbackend:
     container_name: pollBackend
-    image: pollbackend
+    build: 
+      context: .
+      dockerfile: Dockerfile
     restart: always
     volumes:
       - ./src/:/app/src
     ports:
       - 8000:8000
+    command:  npm run dev
